@@ -74,9 +74,6 @@ fun CategoryDetailsScreen(
                            )
                        }
                     }
-                },
-                actions = {
-                    Icon(imageVector = Icons.Filled.Search, contentDescription = null)
                 }
             )
         }
