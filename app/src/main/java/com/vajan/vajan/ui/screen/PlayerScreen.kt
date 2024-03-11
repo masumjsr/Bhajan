@@ -65,14 +65,18 @@ fun PlayerScreen(
                     exitFullscreen.invoke()
                 }
 
-                override fun onExitFullscreen() {}
+                override fun onExitFullscreen() {
+
+                }
             })
 
 lifecycleOwner.lifecycle.addObserver(view)
 
 
 
-            AndroidView(factory = {
+            AndroidView(
+                modifier= Modifier,
+                factory = {
                 view.addYouTubePlayerListener(
                     object : AbstractYouTubePlayerListener() {
                         override fun onReady(youTubePlayer: YouTubePlayer) {

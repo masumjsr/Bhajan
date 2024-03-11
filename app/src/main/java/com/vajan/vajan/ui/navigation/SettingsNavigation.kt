@@ -13,9 +13,11 @@ fun NavController.navigateToSetting(navOptions: NavOptions? = null){
     this.navigate(settingNavigationRoute,navOptions)
 }
 
-fun NavGraphBuilder.settingScreen() {
+fun NavGraphBuilder.settingScreen(
+    onDrawerClick:()->Unit
+) {
     composable(settingNavigationRoute){
-    SettingScreenRoute()
+    SettingScreenRoute(onDrawerClick)
     }
 }
 

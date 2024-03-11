@@ -9,18 +9,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.vajan.vajan.ui.screen.CategoryDetailsScreenRoute
 import com.vajan.vajan.ui.screen.CategoryScreenRoute
-import com.vajan.vajan.ui.screen.PlayerScreenRoute
-import okio.ByteString.Companion.encode
 
 const val categoryNavigationRoute = "category_navigation_route"
 const val categoryDetailsNavigationRoute="category_details_navigation_route"
 const val categoryIdArg="category_name"
 
 fun NavGraphBuilder.categoryScreen(
-    onClick:(categoryId:String)->Unit
+    onClick: (categoryId: String) -> Unit,
+    onDrawerClick: () -> Unit
 ) {
     composable(categoryNavigationRoute){
-    CategoryScreenRoute(onClick=onClick)
+    CategoryScreenRoute(onClick=onClick,onDrawerClick=onDrawerClick)
     }
 }
 

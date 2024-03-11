@@ -14,10 +14,11 @@ fun NavController.navigateToHome(navOptions: NavOptions? = null){
 }
 
 fun NavGraphBuilder.homeScreen(
-    onRecordClick:(String)->Unit
+    onRecordClick:(String)->Unit,
+    onDrawerClick:()->Unit
 ) {
     composable(homeNavigationRoute){
-    HomeScreenRoute(onRecordClick)
+    HomeScreenRoute(onRecordClick,onDrawerClick)
     }
 }
 

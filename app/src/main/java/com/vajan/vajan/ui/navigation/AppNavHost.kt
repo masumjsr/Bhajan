@@ -10,7 +10,8 @@ fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier =Modifier,
     startDestination:String = homeNavigationRoute,
-    onBackClick :()->Unit
+    onBackClick :()->Unit,
+    onDrawerClick:()->Unit
 
 ) {
     NavHost(
@@ -19,10 +20,10 @@ fun AppNavHost(
         modifier = modifier
          ) {
 
-        homeScreen(onRecordClick = navController::navigateToPlayerScreen)
-        categoryScreen(onClick = navController::navigateToCategoryDetails)
-        favoriteScreen(onRecordClick = navController::navigateToPlayerScreen)
-        settingScreen()
+        homeScreen(onRecordClick = navController::navigateToPlayerScreen,onDrawerClick=onDrawerClick)
+        categoryScreen(onClick = navController::navigateToCategoryDetails,onDrawerClick=onDrawerClick)
+        favoriteScreen(onRecordClick = navController::navigateToPlayerScreen,onDrawerClick=onDrawerClick)
+        settingScreen(onDrawerClick=onDrawerClick)
         playerScreen(onBackClick)
         categoryDetailsScreen (onBackClick, onRecordClick = navController::navigateToPlayerScreen)
 

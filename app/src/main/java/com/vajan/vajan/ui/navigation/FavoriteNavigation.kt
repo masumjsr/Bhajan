@@ -5,7 +5,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.vajan.vajan.ui.screen.FavoriteScreenRoute
-import com.vajan.vajan.ui.screen.HomeScreenRoute
 
 const val favoriteNavigationRoute = "favorite_navigation_route"
 
@@ -15,10 +14,11 @@ fun NavController.navigateToFavorite(navOptions: NavOptions? = null){
 }
 
 fun NavGraphBuilder.favoriteScreen(
-    onRecordClick:(String)->Unit
+    onRecordClick: (String) -> Unit,
+    onDrawerClick: () -> Unit
 ) {
     composable(favoriteNavigationRoute){
-    FavoriteScreenRoute(onRecordClick=onRecordClick)
+    FavoriteScreenRoute(onRecordClick=onRecordClick,onDrawerClick=onDrawerClick)
     }
 }
 

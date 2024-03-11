@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreenRoute(
     onRecordClick:(String)->Unit,
+    onDrawerClick:()->Unit,
     viewModel: BhajanViewModel= hiltViewModel()
 ) {
     val records by viewModel.records.collectAsStateWithLifecycle()
@@ -47,7 +48,7 @@ fun HomeScreenRoute(
         onTextChanged ={ text-> viewModel.updateSearchTextState(text)},
         onClose = { searchWidgetStateValue -> viewModel.updateSearchWidgetState(searchWidgetStateValue)},
         onSearchTrigger = { searchWidgetStateValue -> viewModel.updateSearchWidgetState(searchWidgetStateValue)},
-
+        onDrawerClick = onDrawerClick
         )
 }
 
@@ -63,6 +64,7 @@ fun HomeScreen(
     onSearchTrigger: (SearchWidgetState) -> Unit,
     searchWidgetState: SearchWidgetState,
     searchTextState: String,
+    onDrawerClick:()->Unit
 
     ) {
 
@@ -79,7 +81,7 @@ fun HomeScreen(
                       },
                       navigationIcon = {
                           IconButton(onClick = {
-
+                    onDrawerClick.invoke()
                           }) {
                               Icon(
                                   imageVector = Icons.Default.Menu,
