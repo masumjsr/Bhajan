@@ -8,13 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,11 +29,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import com.vajan.vajan.model.Favorite
 import com.vajan.vajan.model.FavoriteRecord
 import com.vajan.vajan.ui.icon.AppIcons
 import com.vajan.vajan.ui.viewmodel.PlayerViewModel
-import kotlin.jvm.functions.Function0
 
 
 @Composable
@@ -46,13 +45,38 @@ fun PlayerScreenRoute(
     if(record.record.bhajanId!="")PlayerScreen(favoriteRecord =record,onBackClick=onBackClick, onFavoriteClick = viewModel::updateFavorite)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerScreen(
     favoriteRecord: FavoriteRecord,
     onBackClick: () -> Unit,
     onFavoriteClick:(bhajanId:String,isFavorite:Boolean)->Unit) {
     val ctx = LocalContext.current
-    Scaffold { it ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+
+                    Text(
+                        text = favoriteRecord.record.name,
+                    )
+                },
+                navigationIcon = {
+                    IconButton(onClick = {
+
+                    }) {
+                        IconButton(onClick = { onBackClick.invoke() }) {
+                            Icon(
+                                imageVector = AppIcons.Back,
+                                contentDescription = "back Icon"
+                            )
+                        }
+                    }
+                },
+
+            )
+        }
+    ) { it ->
         val lifecycleOwner = LocalLifecycleOwner.current
         Column(
             modifier= Modifier
